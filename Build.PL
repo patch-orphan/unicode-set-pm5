@@ -21,6 +21,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'perl'             => '5.8.1',
+        'charnames'        => 0,
         'namespace::clean' => 0,
         'strict'           => 0,
         'utf8'             => 0,

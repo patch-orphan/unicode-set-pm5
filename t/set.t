@@ -2,7 +2,8 @@ use utf8;
 use strict;
 use warnings;
 use open qw( :encoding(UTF-8) :std );
-use Test::More tests => 8;
+use charnames qw( :full );
+use Test::More tests => 10;
 use Test::Differences;
 use Unicode::Set;
 
@@ -26,3 +27,9 @@ eq_or_diff [$set->list], [qw( a b c d )], 'set without spaces';
 
 $set->set('[abcĉ]');
 eq_or_diff [$set->list], [qw( a b c ĉ )], 'set with wide char without spaces';
+
+$set->set('[ ab cd ]');
+eq_or_diff [$set->list], [qw( a b c d )], 'set with and without spaces';
+
+$set->set("[ab\t\r\n\f\N{NO-BREAK SPACE}\N{IDEOGRAPHIC SPACE}cd]");
+eq_or_diff [$set->list], [qw( a b c d )], 'set with and without spaces';
