@@ -19,11 +19,11 @@ sub list {
     return () unless defined $set;
 
     for ($set) {
-        s{ ^ \[ \s+ }{}x;
-        s{ \s+ \] $ }{}x;
+        s{ ^ \[ \s* }{}x;
+        s{ \s* \] $ }{}x;
     }
 
-    my @list = split /\s+/, $set;
+    my @list = map { split // } split /\s+/, $set;
 
     return @list;
 }
