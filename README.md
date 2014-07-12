@@ -1,4 +1,4 @@
-i[![Perl CLDR](https://www.gravatar.com/avatar/656f15a25eff4437f5a82e7c929f41dd?s=96)](http://perl-cldr.github.io/)
+[![Perl CLDR](https://www.gravatar.com/avatar/656f15a25eff4437f5a82e7c929f41dd?s=96)](http://perl-cldr.github.io/)
 
 [![Build status](https://travis-ci.org/perl-cldr/unicode-set-pm5.png)](https://travis-ci.org/perl-cldr/unicode-set-pm5)
 [![Coverage status](https://coveralls.io/repos/perl-cldr/unicode-set-pm5/badge.png)](https://coveralls.io/r/perl-cldr/unicode-set-pm5)
