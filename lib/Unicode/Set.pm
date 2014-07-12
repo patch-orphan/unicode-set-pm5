@@ -8,6 +8,26 @@ use namespace::clean;
 
 our $VERSION = '0.00_01';
 
+has set => (
+    is => 'rw',
+);
+
+sub list {
+    my ($self) = @_;
+    my $set = $self->set;
+
+    return () unless defined $set;
+
+    for ($set) {
+        s{ ^ \[ \s+ }{}x;
+        s{ \s+ \] $ }{}x;
+    }
+
+    my @list = split /\s+/, $set;
+
+    return @list;
+}
+
 1;
 
 __END__
@@ -32,23 +52,21 @@ This document describes Unicode::Set v0.00_1.
 
 XXX
 
-=head2 Methods
+=head2 Attributes
 
 =over
 
-=item XXX
+=item set
 
 XXX
 
 =back
 
-=head2 Attributes
-
-XXX
+=head2 Methods
 
 =over
 
-=item XXX
+=item list
 
 XXX
 

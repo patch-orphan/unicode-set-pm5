@@ -24,17 +24,15 @@ $set = Unicode::Set->new;
 
 XXX
 
-## Methods
+## Attributes
 
-- XXX
+- set
 
     XXX
 
-## Attributes
+## Methods
 
-XXX
-
-- XXX
+- list
 
     XXX
 
