@@ -23,11 +23,17 @@ sub list {
         s{ \s* \] $ }{}x;
     }
 
-    my @list = map { m{ ^ ( . ) - ( . ) $ }x ? $1 .. $2 : $_ }
+    my @list = map { m{ ^ (.) - (.) $ }x ? _range($1, $2) : $_ }
                map { split m{ (?<! - ) (?! - ) }x }
                split m{ \s+ }x, $set;
 
     return @list;
+}
+
+sub _range {
+    my ($start, $end) = map { ord } @_;
+
+    return map { chr } $start .. $end;
 }
 
 1;
