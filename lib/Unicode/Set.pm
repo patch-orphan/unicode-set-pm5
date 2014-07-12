@@ -23,8 +23,9 @@ sub list {
         s{ \s* \] $ }{}x;
     }
 
-    my @list = map { m{ ^ (.) - (.) $ }x ? _range($1, $2) : $_ }
-               map { split m{ (?<! - ) (?! - ) }x }
+    my @list = map { m{ ^ (.) - (.)  $ }x ? _range($1, $2) : $_ }
+               map { m{ ^ \{ (.+) \} $ }x ? $1 : split m{ (?<! - ) (?! - ) }x }
+               map { split m{ (?<= \} ) | (?= \{ ) }x }
                split m{ \s+ }x, $set;
 
     return @list;

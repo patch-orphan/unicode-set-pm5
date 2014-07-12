@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use open qw( :encoding(UTF-8) :std );
 use charnames qw( :full );
-use Test::More tests => 14;
+use Test::More tests => 16;
 use Test::Differences;
 use Unicode::Set;
 
@@ -45,3 +45,9 @@ eq_or_diff [$set->list], [qw( а б в г )], 'set range with Cyrillic';
 
 $set->set('[😀-😃]');
 eq_or_diff [$set->list], [qw( 😀 😁 😂 😃 )], 'set range with Emoji';
+
+$set->set('[ a-c {ch} d ]');
+eq_or_diff [$set->list], [qw( a b c ch d )], 'set with multichar string (space)';
+
+$set->set('[a-c{ch}d]');
+eq_or_diff [$set->list], [qw( a b c ch d )], 'set with multichar string (no space)';
