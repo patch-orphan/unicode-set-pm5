@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use open qw( :encoding(UTF-8) :std );
 use charnames qw( :full );
-use Test::More tests => 16;
+use Test::More tests => 19;
 use Test::Differences;
 use Unicode::Set;
 
@@ -51,3 +51,12 @@ eq_or_diff [$set->list], [qw( a b c ch d )], 'set with multichar string (space)'
 
 $set->set('[a-c{ch}d]');
 eq_or_diff [$set->list], [qw( a b c ch d )], 'set with multichar string (no space)';
+
+$set->set('[ a-c \\u0109 d ]');
+eq_or_diff [$set->list], [qw( a b c ĉ d )], 'set with 4-hex escaped char (space)';
+
+$set->set('[a-c\\u0109d]');
+eq_or_diff [$set->list], [qw( a b c ĉ d )], 'set wih 4-hex escaped char (no space)';
+
+$set->set('[ \\U0001F600 ]');
+eq_or_diff [$set->list], ['😀'], 'set with 8-hex escaped char';

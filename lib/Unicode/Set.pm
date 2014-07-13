@@ -21,6 +21,8 @@ sub list {
     for ($set) {
         s{ ^ \[ \s* }{}x;
         s{ \s* \] $ }{}x;
+        s{ \\ u ( \p{xdigit}{4} ) }{ chr hex $1 }xeg;
+        s{ \\ U ( \p{xdigit}{8} ) }{ chr hex $1 }xeg;
     }
 
     my @list = map { m{ ^ (.) - (.)  $ }x ? _range($1, $2) : $_ }
